@@ -23,6 +23,10 @@ public class Matrix {
                 case 5:
                     sumElement(matrix);
                     break;
+                case 6:
+                    if (matrix.length!=matrix[0].length) matrix = createSquareMatrix();
+                    sumDiagonal(matrix);
+                    break;
                 case 0:
                     System.out.println("Bye bye ^^");
                     return;
@@ -37,6 +41,7 @@ public class Matrix {
         System.out.println("3. Element has min value ");
         System.out.println("4. Element has max value ");
         System.out.println("5. Sum element of a column ");
+        System.out.println("6. Sum the numbers on the diagonal of the square matrix");
         System.out.println("0. Exit");
         System.out.println("Please choice program: ");
     }
@@ -69,7 +74,18 @@ public class Matrix {
 //        displayMatrix(matrix);
         return matrix;
     }
+    public static int[][] createSquareMatrix() {
+        System.out.println("\n");
+        System.out.println("Create Square Matrix");
+        System.out.println("Please size of Matrix has MxM");
+        System.out.println("Enter size: ");
+        int size = checkNumber(" value size of square matrix");
 
+
+        int[][] matrix = new int[size][size];
+        addElement(matrix);
+        return matrix;
+    }
     public static void addElement(int[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
@@ -128,5 +144,12 @@ public class Matrix {
             sum+=matrix[i][indexColumn-1];
         }
         System.out.println("Sum element of a column with index "+indexColumn+" is: "+sum);
+    }
+    public static void sumDiagonal(int[][] matrix){
+        int sum=0;
+        for (int i = 0; i < matrix.length; i++) {
+            sum+=matrix[i][i];
+        }
+        System.out.println(" Sum the numbers on the diagonal of the square matrix: "+sum);
     }
 }
